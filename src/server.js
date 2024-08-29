@@ -13,6 +13,11 @@ app.get("/", (req, res) => {
      .send({ message: "Hello, Word!" })
 })
 
+app.get("/2tds2", (req, res) => {
+     return res.status(200)
+     .send({ message: "Hello, Word!" })
+})
+
 app.listen(serverPort, () => {
     console.log(`👍 Server started on http://localhost:${serverPort}`)
 })
