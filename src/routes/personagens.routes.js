@@ -1,8 +1,8 @@
-import { Router } from "express"
+import { Router } from "express";
 
 const personagensRoutes = Router()
 
-const personagens = [
+let personagens = [
     {
          id: 100,
          nome: "Totoro",
