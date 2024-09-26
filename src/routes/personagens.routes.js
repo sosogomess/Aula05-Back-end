@@ -1,6 +1,8 @@
-import { Router } from "express";
+import { Router } from "express"
 
 const personagensRoutes = Router()
+
+
 
 let personagens = [
     {
@@ -25,7 +27,42 @@ let personagens = [
     }
 ]
 
-app.get("/personagens", (req, res) => {
+personagensRoutes.get("/", (req, res) => {
     return res.status(200)
-    .send( personagens )
+    .send(personagens)
 })
+
+//Rota para criar um novo personagem
+personagensRoutes.post("/", (req, res) => {
+     const { nome, studio, vivo} = req.body
+ 
+     const novoPersonagem = {
+          id: personagens.length + 1, 
+          nome: nome,
+          studio: studio,
+          vivo: vivo,
+     };
+     personagens.push(novoPersonagem);
+     return res.status(201)
+     .send(novoPersonagem);
+ });
+
+ personagensRoutes.delete("/:id", (req, res) => {
+     const { id } = req.params; 
+ 
+     const personagem  = personagens.find((person) => person.id == id );
+ 
+     if (!personagem) {
+         return res.status (404).send ({message: "Personagem não encontrado!"});
+     }
+ 
+     personagens = personagens.filter((person) => person.id != id )
+ 
+     return res.status(200).send ({
+         message: "Personagem Deletado!",
+         personagem,
+     });
+ });
+ 
+
+ export default personagensRoutes;

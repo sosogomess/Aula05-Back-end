@@ -100,4 +100,5 @@ emocoesRoutes.delete("/:id", (req, res) => {
     });
 });
 
+
 export default emocoesRoutes;
